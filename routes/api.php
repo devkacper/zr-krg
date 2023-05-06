@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthorizationController;
+use App\Http\Controllers\Api\CurrencyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('authenticate', [AuthorizationController::class, 'authenticate'])->middleware('api')->name('authenticate');
+
+Route::apiResources([
+    'currency' => CurrencyController::class,
+], ['only' => 'index', 'show', 'store']);
