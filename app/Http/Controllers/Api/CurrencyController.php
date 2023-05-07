@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\CurrencyRequest;
 use App\Models\Currency;
-use Carbon\Carbon;
+use App\Services\CurrencyService;
 
 class CurrencyController extends Controller
 {
-    public function __construct()
+    public function __construct(CurrencyService $currencyService)
     {
         $this->middleware('auth:api');
+        $this->currencyService = $currencyService;
     }
 
     /**
-     * Return currencies rate from current day.
+     * Return currencies rates from current day.
      *
      * @return void
      */
@@ -23,19 +24,9 @@ class CurrencyController extends Controller
     {
         $this->authorize('viewAny', auth()->user());
 
-        $currencies = Currency::whereDate('created_at', Carbon::today())->get();
+        $currenciesRates = $this->currencyService->getCurrenciesData();
 
-        $data = [];
-
-        foreach($currencies as $currency) {
-            array_push($data, [
-                'currency' => $currency->name,
-                'date' => $currency->created_at->format('Y-m-d'),
-                'amount' => $currency->amount,
-            ]);
-        }
-
-        return response($data, 200);
+        return response($currenciesRates, 200);
     }
 
     /**
@@ -48,13 +39,9 @@ class CurrencyController extends Controller
     {
         $this->authorize('view', auth()->user());
 
-        $data = [
-            'currency' => $currency->name,
-            'date' => $currency->created_at->format('Y-m-d'),
-            'amount' => $currency->amount,
-        ];
+        $currencyRate = $this->currencyService->getCurrencyData($currency);
 
-        return response($data, 200);
+        return response($currencyRate, 200);
     }
 
     /**
@@ -64,10 +51,9 @@ class CurrencyController extends Controller
     {
         $this->authorize('create', auth()->user());
 
-        Currency::create([
-            'name' => $request->name,
-            'amount' => $request->amount,
-        ]);
+        $data = $request->safe()->only(['name', 'amount']);
+
+        $this->currencyService->storeCurrencyData($data);
 
         return response([
             'message' => __('api_response.currency.success'),
