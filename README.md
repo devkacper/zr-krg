@@ -15,7 +15,7 @@ Aplikacja dotycząca zadania rekrutacyjnego od KR Group.
 1. Pobranie repozytorium:
 
 ```bash
-git clone https://github.com/devkacper/currency.git
+git clone https://github.com/devkacper/zr-krg.git
 ```
 
 2. Instalacja pakietów composer:
