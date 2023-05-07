@@ -18,7 +18,8 @@ class CurrencyController extends Controller
     /**
      * Return currencies rates from current day.
      *
-     * @return void
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index()
     {
@@ -33,7 +34,8 @@ class CurrencyController extends Controller
      * Return specified currency and rate from current day.
      *
      * @param Currency $currency
-     * @return void
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Currency $currency)
     {

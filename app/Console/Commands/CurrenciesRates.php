@@ -25,7 +25,8 @@ class CurrenciesRates extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param NBPService $nbpService
+     * @param CurrencyService $currencyService
      */
     public function __construct(NBPService $nbpService, CurrencyService $currencyService)
     {
@@ -37,7 +38,8 @@ class CurrenciesRates extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return null
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function handle()
     {

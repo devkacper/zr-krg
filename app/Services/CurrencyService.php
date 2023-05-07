@@ -12,7 +12,7 @@ class CurrencyService
      *
      * @return array
      */
-   public function getCurrenciesData()
+   public function getCurrenciesData(): array
    {
        $currencies = Currency::whereDate('created_at', Carbon::today())->get();
 
@@ -33,9 +33,9 @@ class CurrencyService
      * Return data of specified currency.
      *
      * @param $currency
-     * @return void
+     * @return array
      */
-   public function getCurrencyData($currency)
+   public function getCurrencyData($currency): array
    {
         return $data = [
            'currency' => $currency->name,
