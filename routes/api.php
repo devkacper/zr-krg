@@ -19,4 +19,4 @@ Route::post('authenticate', [AuthorizationController::class, 'authenticate'])->m
 
 Route::apiResources([
     'currency' => CurrencyController::class,
-], ['only' => 'index', 'show', 'store']);
+], ['only' => ['index', 'show', 'store']]);
