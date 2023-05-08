@@ -31,6 +31,11 @@ class Currency extends Model
         'amount',
     ];
 
+    /**
+     * Select model object by name parameter.
+     *
+     * @var string
+     */
     protected $primaryKey = 'name';
     public $incrementing = false;
 }

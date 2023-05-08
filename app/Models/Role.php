@@ -9,10 +9,18 @@ class Role extends Model
 {
     use HasFactory;
 
-    protected $table = 'roles';
-
+    /**
+     * Disable insert timestamps records.
+     *
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
     protected $fillable = [
         'name',
     ];

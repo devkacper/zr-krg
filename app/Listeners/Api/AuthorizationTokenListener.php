@@ -19,7 +19,7 @@ class AuthorizationTokenListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param $event
      * @return void
      */
     public function handle($event)

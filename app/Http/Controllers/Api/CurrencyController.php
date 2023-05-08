@@ -48,6 +48,10 @@ class CurrencyController extends Controller
 
     /**
      * Store the Currency object in database.
+     *
+     * @param CurrencyRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(CurrencyRequest $request)
     {
